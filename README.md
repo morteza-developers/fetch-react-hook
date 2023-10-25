@@ -1,12 +1,9 @@
-# react-hook-fetch
-
-
+# hook-fetch
 
 ## Getting started
 
-
-## Add your files
+## install
 
 ```
-npm i @morteza_dev/react-hook-fetch
+npm i hook-fetch
 ```

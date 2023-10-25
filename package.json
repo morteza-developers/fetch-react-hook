@@ -1,11 +1,16 @@
 {
-  "name": "react-hook-fetch",
-  "version": "0.0.3",
+  "name": "hook-fetch",
+  "version": "0.0.2",
   "license": "ISC",
   "main": "index.js",
   "author": "morteza khedmatgozar <morteza.mk14@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/morteza-developers/hook-fetch"
+  },
   "dependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "react-hook-http": "^0.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.15",
@@ -14,13 +19,9 @@
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.22.15",
     "@svgr/webpack": "^8.1.0",
-    "@types/jest": "^29.5.6",
-    "@types/leaflet": "^1.9.4",
-    "@types/leaflet-draw": "^1.0.8",
     "@types/node": "^20.6.0",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
-    "@types/react-helmet": "^6.1.6",
     "@types/stylis": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
@@ -37,12 +38,10 @@
     "mini-css-extract-plugin": "^2.7.6",
     "postcss-loader": "^7.3.3",
     "react-refresh": "^0.14.0",
-    "react-test-renderer": "^18.2.0",
     "style-loader": "^3.3.3",
     "terser-webpack-plugin": "^5.3.9",
     "typescript": "^5.2.2",
     "webpack": "^5.88.2",
-    "webpack-bundle-analyzer": "^4.9.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
@@ -66,6 +65,7 @@
   "keywords": [
     "react",
     "hook",
-    "fetch"
+    "fetch",
+    "http"
   ]
 }
