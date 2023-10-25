@@ -1,6 +1,6 @@
 {
   "name": "hook-fetch",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "ISC",
   "main": "index.js",
   "author": "morteza khedmatgozar <morteza.mk14@gmail.com>",
