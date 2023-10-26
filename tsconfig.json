@@ -2,6 +2,7 @@
   "compilerOptions": {
     "strictPropertyInitialization": false,
     "lib": ["ES6", "ES2017", "DOM"],
+    "outDir": "dist",
     "baseUrl": "./src",
     "sourceMap": false,
     "strict": true,
@@ -16,7 +17,7 @@
     "jsx": "react-jsx",
     "checkJs": false,
     "removeComments": true,
-    "incremental": true,
+    "incremental": false,
     "esModuleInterop": true
   },
   "include": [
