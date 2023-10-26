@@ -7,7 +7,6 @@ type Props = {
 };
 const CATCH = new Map();
 
-
 type ContextType = {
   setCatch: <T>(key: string, data: T) => void;
   getCatch: <T>(key: string) => T | undefined;
@@ -30,7 +29,6 @@ const FetchProvider: FC<Props> = ({ children }) => {
   const clear = () => CATCH.clear();
   const has = (key: string) => CATCH.has(key);
 
-
   useEffect(() => {
     return () => clear();
   }, []);
@@ -41,6 +39,4 @@ const FetchProvider: FC<Props> = ({ children }) => {
   );
 };
 const useFetchContext = () => useContext(FetchContext);
-export { useFetchContext };
-
-export default FetchProvider;
+export { useFetchContext, FetchProvider };
