@@ -1,12 +1,12 @@
 {
   "name": "fetch-react-hook",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "license": "ISC",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-      "dist"
-   ],
+    "dist"
+  ],
   "description": "Performant, flexible and extensible fetch library for React Hooks",
   "homepage": "https://github.com/morteza-developers/fetch-react-hook",
   "author": "Morteza KHedmatgozar <morteza.mk14@gmail.com>",
