@@ -1,6 +1,5 @@
-import useFetch from "./hooks/useFetch";
-import FetchProvider from "./provider";
+export * from "./hooks/useFetch";
+export * from "./provider";
 import * as FetchType from "./type";
 
 export type { FetchType };
-export { useFetch, FetchProvider };

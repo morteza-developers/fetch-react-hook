@@ -1,10 +1,12 @@
 {
   "name": "fetch-react-hook",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "ISC",
   "main": "index.js",
+  "source": "src/index.ts",
+  "description": "Performant, flexible and extensible fetch library for React Hooks",
   "homepage": "https://github.com/morteza-developers/fetch-react-hook",
-  "author": "<morteza.mk14@gmail.com>",
+  "author": "Morteza KHedmatgozar <morteza.mk14@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/morteza-developers/fetch-react-hook"
@@ -47,7 +49,6 @@
     "not dead",
     "iOS >= 9"
   ],
-  "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
   "keywords": [
     "react",
     "hook",
@@ -55,6 +56,18 @@
     "http",
     "hooks",
     "react-hooks",
-    "typescript"
+    "typescript",
+    "input",
+    "component",
+    "request",
+    "response",
+    "fetch data",
+    "http client",
+    "react hooks",
+    "react http",
+    "react-http",
+    "react fetch",
+    "react-http",
+    "react-http-fetch"
   ]
 }
