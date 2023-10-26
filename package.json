@@ -1,6 +1,6 @@
 {
   "name": "fetch-react-hook",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "ISC",
   "main": "src/index.ts",
   "source": "src/index.ts",
