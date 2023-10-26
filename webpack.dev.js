@@ -24,9 +24,9 @@ const devConfig = (env) => {
       hot: false,
       open: watch,
       historyApiFallback: true,
-      static: {
-        directory: path.join(__dirname, "public"),
-      },
+      // static: {
+      //   directory: path.join(__dirname, "public"),
+      // },
       client: {
         overlay: {
           errors: true,
