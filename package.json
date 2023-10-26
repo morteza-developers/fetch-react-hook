@@ -15,14 +15,14 @@
     "url": "https://github.com/morteza-developers/fetch-react-hook"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.23.2",
-    "dotenv": "^16.3.1",
     "react": "^18.2.0"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17 || ^18"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.23.2",
+    "dotenv": "^16.3.1",
     "@babel/cli": "^7.22.15",
     "@babel/core": "^7.22.17",
     "@babel/preset-react": "^7.22.15",
