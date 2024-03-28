@@ -34,7 +34,7 @@ function TodoList() {
   } = useFetch(() =>  fetch("https://jsonplaceholder.typicode.com/todos/").then((res) =>
         res.json()
       ), {
-    autoFetch: false,
+    autoFetch: true,
     onSuccess: (response) => {},
     onFinish: () => {},
     catchKey: "catch",
