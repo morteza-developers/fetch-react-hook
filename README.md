@@ -22,7 +22,7 @@ This example demonstrates how you might get some todos with `useFetch` while bei
 
 ```jsx
 import React, { useEffect, useState } from "react";
-import useFetch from "fetch-react-hook";
+import useFetch , {FetchProvider} from "fetch-react-hook";
 
 function TodoList() {
   const {
@@ -31,20 +31,22 @@ function TodoList() {
     data: todos,
     status,
     setData,
-  } = useFetch(() => fetch("https://jsonplaceholder.typicode.com/todos/"), {
+  } = useFetch(() =>  fetch("https://jsonplaceholder.typicode.com/todos/").then((res) =>
+        res.json()
+      ), {
     autoFetch: false,
     onSuccess: (response) => {},
     onFinish: () => {},
     catchKey: "catch",
-    onDataSetter: (response) => [],
+    onDataSetter: (response) => response,
   });
 
   return (
-    <div>
+    <FetchProvider>
       {todos.map((todo) => {
-        <span key={todo.id}>{todo.title}</span>;
+        return <span key={todo.id}>{todo.title}</span>;
       })}
-    </div>
+    </FetchProvider>
   );
 }
 ```

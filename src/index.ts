@@ -1,5 +1,6 @@
 import useFetch from "./hooks/useFetch";
-export * from "./provider";
-export * from "./type";
+import FetchProvider from "./provider";
+export type { IStatus, ICacheStrategy } from "./type";
+export { FetchProvider };
 export * from "./utils";
 export default useFetch;
