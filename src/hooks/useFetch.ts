@@ -8,6 +8,7 @@ import {
   UseFetchProps,
 } from "../type";
 import { useFetchContext } from "../provider";
+
 const defaultsConfigs = {
   keepDefaultParams: true,
   requestOptions: undefined,
@@ -23,15 +24,18 @@ const useFetch = <D, I extends unknown, R, O>(
     beforeAutoFetch = () => undefined,
     onError = () => null,
     onFinish = () => null,
-    setMessage = (res: any) => res?.data?.message,
+    setMessage = (res: any) => res?.message,
     onDataSetter,
     defaultStatus,
     catchKey,
     onCache = () => null,
     justCache = false,
+    cacheStrategy,
   }: UseFetchProps<D, I, R> = {}
 ): UseFetch<D, I, R, O> => {
-  const { setCatch, getCatch } = useFetchContext();
+  const { cacheStrategy: providerCacheStrategy } = useFetchContext();
+  const { getItem, setItem } = cacheStrategy || providerCacheStrategy || {};
+
   const getDefaultStatus = (): IStatus => {
     if (defaultStatus) return defaultStatus;
     if (!enableLoading) return "success";
@@ -50,19 +54,17 @@ const useFetch = <D, I extends unknown, R, O>(
       data
     );
     try {
+      const catchData=getDataFromCatch()
+      if(catchData){
+        handleCatchData(catchData)
+        return { status: "success" }
+      }
       if (enableLoading) setStatus("loading");
       const res = await fetcher(mergedData, requestOptions);
       if (onDataSetter) {
         const callBackData: D | null = onDataSetter(res);
-        if (callBackData) {
-          if (catchKey) {
-            setCatch<D>(catchKey, callBackData);
-            onCache(callBackData);
-          }
-          !justCache && setData(callBackData);
-        }
+        if (callBackData)  handleCatchResponse(callBackData)
       }
-
       handleSuccessRequest(res, mergedData);
       return {
         status: "success",
@@ -75,13 +77,26 @@ const useFetch = <D, I extends unknown, R, O>(
     }
   };
 
+  const handleCatchResponse = (data: D ) => {
+    if (catchKey) {
+      setItem<D>(catchKey, data);
+      onCache(data);
+    }
+    !justCache && setData(data);
+  }; 
+  
+  const handleCatchData=(data: D)=>{
+      onCache(data);
+      !justCache && setData(data);
+  }
+
   const handleFetch = async (
     data?: Partial<I>,
     configs?: Options<O>
   ): Promise<ResponseFetcher<R> | never> => await sendFetch(data, configs);
 
   const getDataFromCatch = (): D | undefined => {
-    if (catchKey) return getCatch(catchKey);
+    if (catchKey) return getItem(catchKey);
     return undefined;
   };
 
@@ -114,8 +129,7 @@ const useFetch = <D, I extends unknown, R, O>(
     if (catchKey) {
       const catchData = getDataFromCatch();
       if (catchData) {
-        onCache(catchData);
-        !justCache && setData(catchData);
+        handleCatchData(catchData)
         setStatus("success");
       } else {
         if (autoFetch) {
@@ -131,7 +145,7 @@ const useFetch = <D, I extends unknown, R, O>(
 
   const handleSetData = (newValue: D): void => {
     setData(newValue);
-    if (catchKey) setCatch<D>(catchKey, newValue);
+    if (catchKey) setItem<D>(catchKey, newValue);
   };
   return {
     isPending: status === "loading",

@@ -1,42 +1,28 @@
-import { FC, ReactNode, createContext, useEffect, useContext } from "react";
+import { FC, ReactNode, createContext, useContext } from "react";
+import { ICacheStrategy } from "../type";
+import { MemoryCacheStrategy } from "../utils";
 
 const FetchContext = createContext<ContextType>({} as ContextType);
 
 type Props = {
   children: ReactNode;
+  cacheStrategy?: ICacheStrategy;
 };
-const CATCH = new Map();
 
 type ContextType = {
-  setCatch: <T>(key: string, data: T) => void;
-  getCatch: <T>(key: string) => T | undefined;
-  remove: (key: string) => boolean;
-  clear: () => void;
-  has: (key: string) => boolean;
+  cacheStrategy: ICacheStrategy;
 };
-const FetchProvider: FC<Props> = ({ children }) => {
-  const setCatch = <T extends unknown>(key: string, data: T): void => {
-    CATCH.set(key, data);
-  };
-
-  const getCatch = <T extends unknown>(key: string): T => {
-    return CATCH.get(key);
-  };
-
-  const remove = (key: string): boolean => {
-    return CATCH.delete(key);
-  };
-  const clear = () => CATCH.clear();
-  const has = (key: string) => CATCH.has(key);
-
-  useEffect(() => {
-    return () => clear();
-  }, []);
+const FetchProvider: FC<Props> = ({
+  children,
+  cacheStrategy = new MemoryCacheStrategy(),
+}) => {
   return (
-    <FetchContext.Provider value={{ setCatch, getCatch, remove, clear, has }}>
+    <FetchContext.Provider value={{ cacheStrategy }}>
       {children}
     </FetchContext.Provider>
   );
 };
 const useFetchContext = () => useContext(FetchContext);
-export { useFetchContext, FetchProvider };
+export { useFetchContext };
+
+export default FetchProvider;

@@ -1,5 +1,4 @@
 export type IStatus = "success" | "loading" | "error";
-
 export type OnFinishType<R, I> = {
   status: "error" | "success";
   response?: R;
@@ -25,13 +24,14 @@ export type UseFetchProps<D, I, R> = {
   catchKey?: string;
   onCache?: (data: D) => void;
   justCache?: boolean;
+  cacheStrategy?: ICacheStrategy;
 };
 
 export type Fetcher<I, R, O> = (data: I, option?: O) => Promise<R>;
 export type ResponseFetcher<R> = {
   status: "error" | "success";
-  response: R;
-  message: string;
+  response?: R;
+  message?: string;
 };
 
 export type UseFetch<D, I, R, O> = {
@@ -49,4 +49,11 @@ export type UseFetch<D, I, R, O> = {
 export interface Options<O> {
   keepDefaultParams?: boolean;
   requestOptions?: O;
+}
+
+export interface ICacheStrategy {
+  setItem: <T extends unknown>(key: string, data: T) => void;
+  getItem: <T extends unknown>(key: string) => T;
+  removeItem: (key: string) => boolean;
+  clear: () => void;
 }
