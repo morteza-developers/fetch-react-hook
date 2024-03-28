@@ -1,6 +1,6 @@
 {
   "name": "fetch-react-hook",
-  "version": "0.0.14",
+  "version": "1.0.0",
   "license": "ISC",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
